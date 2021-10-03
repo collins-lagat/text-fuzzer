@@ -1,0 +1,3 @@
+interface Generate {
+    generate(): string[]
+}
