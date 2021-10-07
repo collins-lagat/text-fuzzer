@@ -14,7 +14,7 @@
     "format-check": "prettier --list-different \"./**/*.{js,ts,json}\""
   },
   "keywords": [],
-  "author": "Collins Lagat",
+  "author": "Collins Lagat <https://gitlab.com/collins.lagat>",
   "license": "MIT",
   "dependencies": {
     "@rollup/plugin-commonjs": "^20.0.0",
