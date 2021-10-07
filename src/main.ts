@@ -1,19 +1,16 @@
 import { GLYPHS, KEYBOARDS } from './core/variables'
 
-type glyphs = Record<string, string[]>
-type keyboards = Record<string, string>[]
-
 class TextFuzz implements Generate {
   private wordsGenerated: string[] = []
 
   constructor(
     private word: string,
-    private glyphs: glyphs = GLYPHS,
-    private keyboard: keyboards = KEYBOARDS
+    private glyphs: Map<string, string[]>,
+    private keyboards: Map<string, string>[]
   ) {}
 
   public generate(): string[] {
-    return [...this.bitsquatting()]
+    return [...this.homoglyph()]
   }
 
   private bitsquatting(): string[] {
@@ -32,8 +29,58 @@ class TextFuzz implements Generate {
     }, [])
     return results
   }
+
+  private homoglyph(): string[] {
+    const range = (length: number): number[] => {
+      return [...Array(length).keys()]
+    }
+
+    const mix = (word: string): Set<string> => {
+      const result = new Set<string>()
+
+      range(word.length).forEach((w) => {
+        if (w === 0) return
+
+        range(word.length - w + 1).forEach((i) => {
+          const pre = word.substring(0, i)
+          const win = word.substring(i, i + w)
+          const suf = word.substring(i + w)
+
+          Array.from(win).forEach((c, i) => {
+            if (this.glyphs.has(c)) {
+              this.glyphs.get(c)?.forEach((g) => {
+                result.add(`${pre}${win.replace(c, g)}${suf}`)
+              })
+            }
+          })
+        })
+      })
+
+      return result
+    }
+
+    const result1 = mix(this.word)
+    const result2 = new Set<string>()
+
+    result1.forEach((text) => result2.add(text))
+
+    return [...result1, ...result2]
+  }
 }
 
-const generator = new TextFuzz('bank')
+class TextFuzzFactory {
+  private static readonly GLYPHS = GLYPHS
+  private static readonly KEYBOARDS = KEYBOARDS
+
+  public static build(word: string) {
+    const glyphs = new Map(Object.entries(this.GLYPHS))
+    const keyboards = this.KEYBOARDS.map(
+      (keyboard) => new Map(Object.entries(keyboard))
+    )
+    return new TextFuzz(word, glyphs, keyboards)
+  }
+}
+
+const generator = TextFuzzFactory.build('bank')
 
 console.log(generator.generate())
