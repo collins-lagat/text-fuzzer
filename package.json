@@ -16,6 +16,10 @@
   "keywords": [],
   "author": "Collins Lagat <https://gitlab.com/collins.lagat>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com:collins.lagat/text-fuzzer.git"
+  },
   "dependencies": {
     "@rollup/plugin-commonjs": "^20.0.0",
     "@rollup/plugin-node-resolve": "^13.0.5",
