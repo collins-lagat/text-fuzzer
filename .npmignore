@@ -1,0 +1,15 @@
+.idea
+.vscode
+.github
+docs
+.editorconfig
+.eslintignore
+.eslintrc.js
+.git
+tsconfig.json
+tslint.json
+rollup.config.js
+yarn.lock
+package-lock.json
+.prettierignore
+.prettier
