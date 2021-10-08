@@ -1,4 +1,4 @@
-import { GLYPHS, KEYBOARDS } from './core/variables'
+import { GLYPHS, KEYBOARDS } from './core'
 import { TextFuzz } from './textFuzz'
 
 class TextFuzzFactory {
