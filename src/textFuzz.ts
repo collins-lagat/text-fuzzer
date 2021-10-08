@@ -10,7 +10,7 @@ export class TextFuzz implements Generate {
   ) {}
 
   public generate(): string[] {
-    return [...this.hyphenation()]
+    return [...this.insertion()]
   }
 
   private bitsquatting(): string[] {
@@ -67,5 +67,32 @@ export class TextFuzz implements Generate {
     return range(1, this.word.length).map(
       (i) => `${this.word.substring(0, i)}-${this.word.substring(i)}`
     )
+  }
+
+  private insertion(): string[] {
+    const result: Set<string> = new Set()
+    range(1, this.word.length)
+      .map((i) => {
+        const prefix = this.word.substring(0, i)
+        const origCharacter = this.word.charAt(i)
+        const suffix = this.word.substring(i + 1)
+        return [prefix, origCharacter, suffix]
+      })
+      .forEach(([prefix, origCharacter, suffix]) => {
+        this.keyboards
+          .map((keys) => {
+            const str = keys.get(origCharacter) ?? ''
+            return [...str]
+          })
+          .reduce<string[]>((acc, arr) => {
+            arr.forEach((c) => acc.push(c))
+            return acc
+          }, [])
+          .forEach((c) => {
+            result.add(`${prefix}${c}${origCharacter}${suffix}`)
+            result.add(`${prefix}${origCharacter}${c}${suffix}`)
+          })
+      })
+    return [...result]
   }
 }
