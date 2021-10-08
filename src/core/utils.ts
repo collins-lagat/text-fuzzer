@@ -18,7 +18,7 @@ export const range = (start: number, end?: number): number[] => {
   let _end: number
 
   if (end === undefined) {
-    _end = start
+    _end = _start
     _start = 0
   } else {
     _end = toFinite(end)
@@ -29,8 +29,8 @@ export const range = (start: number, end?: number): number[] => {
   const result = new Array(length)
   let index = -1
   while (length--) {
-    result[++index] = start
-    start += 1
+    result[++index] = _start
+    _start += 1
   }
 
   return result
