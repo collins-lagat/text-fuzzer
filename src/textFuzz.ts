@@ -10,7 +10,7 @@ export class TextFuzz implements Generate {
   ) {}
 
   public generate(): string[] {
-    return [...this.insertion()]
+    return [...this.omission()]
   }
 
   private bitsquatting(): string[] {
@@ -94,5 +94,11 @@ export class TextFuzz implements Generate {
           })
       })
     return [...result]
+  }
+
+  private omission(): string[] {
+    return range(this.word.length).map((i) => {
+      return `${this.word.substring(0, i)}${this.word.substring(i + 1)}`
+    })
   }
 }
