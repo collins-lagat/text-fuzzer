@@ -10,7 +10,7 @@ export class TextFuzz implements Generate {
   ) {}
 
   public generate(): string[] {
-    return [...this.omission()]
+    return [...this.repetition()]
   }
 
   private bitsquatting(): string[] {
@@ -99,6 +99,12 @@ export class TextFuzz implements Generate {
   private omission(): string[] {
     return range(this.word.length).map((i) => {
       return `${this.word.substring(0, i)}${this.word.substring(i + 1)}`
+    })
+  }
+
+  private repetition(): string[] {
+    return Array.from(this.word).map((c, i) => {
+      return `${this.word.substring(0, i)}${c}${this.word.substring(i)}`
     })
   }
 }
