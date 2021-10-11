@@ -90,7 +90,7 @@ class BaseTextFuzz implements GenerateText {
           const win = word.substring(i, i + w)
           const suf = word.substring(i + w)
 
-          Array.from(win).forEach((c, i) => {
+          Array.from(win).forEach((c) => {
             if (this.glyphs.has(c)) {
               this.glyphs.get(c)?.forEach((g) => {
                 result.add(`${pre}${win.replace(c, g)}${suf}`)
