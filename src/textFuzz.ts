@@ -10,7 +10,7 @@ export class TextFuzz implements Generate {
   ) {}
 
   public generate(): string[] {
-    return [...this.transposition()]
+    return [...this.addition()]
   }
 
   private bitsquatting(): string[] {
@@ -130,6 +130,29 @@ export class TextFuzz implements Generate {
       return `${this.word.substring(0, i)}${this.word.charAt(
         i + 1
       )}${this.word.charAt(i)}${this.word.substring(i + 2)}`
+    })
+  }
+
+  private vowelSwap(): string[] {
+    const vowels = 'aeiou'
+    const results: string[] = []
+
+    range(this.word.length).forEach((i) => {
+      Array.from(vowels).forEach((vowel) => {
+        if (Array.from(vowels).includes(this.word.charAt(i))) {
+          results.push(
+            `${this.word.substring(0, i)}${vowel}${this.word.substring(i + 1)}`
+          )
+        }
+      })
+    })
+
+    return [...new Set(results)]
+  }
+
+  private addition(): string[] {
+    return range(97, 123).map((i) => {
+      return `${this.word}${String.fromCharCode(i)}`
     })
   }
 }
