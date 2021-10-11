@@ -10,7 +10,7 @@ export class TextFuzz implements Generate {
   ) {}
 
   public generate(): string[] {
-    return [...this.replacement()]
+    return [...this.transposition()]
   }
 
   private bitsquatting(): string[] {
@@ -123,5 +123,13 @@ export class TextFuzz implements Generate {
     })
 
     return [...result]
+  }
+
+  private transposition(): string[] {
+    return range(this.word.length - 1).map((i) => {
+      return `${this.word.substring(0, i)}${this.word.charAt(
+        i + 1
+      )}${this.word.charAt(i)}${this.word.substring(i + 2)}`
+    })
   }
 }
