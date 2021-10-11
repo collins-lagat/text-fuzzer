@@ -10,7 +10,7 @@ import replace from '@rollup/plugin-replace'
  * @type { import('rollup').RollupOptions }
  */
 const config = {
-  input: path.resolve(__dirname, 'src/textFuzz.ts'),
+  input: path.resolve(__dirname, 'src/textFuzzer.ts'),
   output: [
     {
       file: path.resolve(__dirname, 'dist/main.js'),

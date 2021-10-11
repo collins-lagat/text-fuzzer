@@ -1,3 +1,3 @@
-import { TextFuzz } from './textFuzz'
+import { TextFuzzer } from './textFuzzer'
 
-console.log(new TextFuzz('bank').method('addition').generate())
+console.log(new TextFuzzer('bank').method('addition').generate())

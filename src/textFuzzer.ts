@@ -2,7 +2,7 @@ import { range } from './core'
 import { GLYPHS, KEYBOARDS } from './core'
 import { GenerateText, Methods, PickMethod } from './core/core'
 
-class BaseTextFuzz implements GenerateText {
+class BaseTextFuzzer implements GenerateText {
   constructor(
     private word: string,
     private method: Methods,
@@ -205,7 +205,7 @@ class BaseTextFuzz implements GenerateText {
   }
 }
 
-class TextFuzzFactory {
+class TextFuzzerFactory {
   private static readonly GLYPHS = GLYPHS
   private static readonly KEYBOARDS = KEYBOARDS
 
@@ -214,14 +214,14 @@ class TextFuzzFactory {
     const keyboards = this.KEYBOARDS.map(
       (keyboard) => new Map(Object.entries(keyboard))
     )
-    return new BaseTextFuzz(word, method, glyphs, keyboards)
+    return new BaseTextFuzzer(word, method, glyphs, keyboards)
   }
 }
 
-export class TextFuzz implements PickMethod {
+export class TextFuzzer implements PickMethod {
   constructor(private word: string) {}
 
-  public method(method: Methods): BaseTextFuzz {
-    return TextFuzzFactory.build(this.word, method)
+  public method(method: Methods): BaseTextFuzzer {
+    return TextFuzzerFactory.build(this.word, method)
   }
 }

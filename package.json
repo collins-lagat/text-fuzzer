@@ -1,5 +1,5 @@
 {
-  "name": "text-fuzz",
+  "name": "text-fuzzer",
   "version": "1.0.0",
   "description": "",
   "main": "dist/main.js",
