@@ -1,16 +1,64 @@
 import { range } from './core'
+import { GLYPHS, KEYBOARDS } from './core'
+import { GenerateText, Methods, PickMethod } from './core/core'
 
-export class TextFuzz implements Generate {
-  private wordsGenerated: string[] = []
-
+class BaseTextFuzz implements GenerateText {
   constructor(
     private word: string,
+    private method: Methods,
     private glyphs: Map<string, string[]>,
     private keyboards: Map<string, string>[]
   ) {}
 
   public generate(): string[] {
-    return [...this.addition()]
+    let result: string[] = []
+
+    switch (this.method) {
+      case 'addition':
+        result = [...this.addition()]
+        break
+
+      case 'bitsquatting':
+        result = [...this.bitsquatting()]
+        break
+
+      case 'homoglyph':
+        result = [...this.homoglyph()]
+        break
+
+      case 'hyphenation':
+        result = [...this.hyphenation()]
+        break
+
+      case 'insertion':
+        result = [...this.insertion()]
+        break
+
+      case 'omission':
+        result = [...this.omission()]
+        break
+
+      case 'repetition':
+        result = [...this.repetition()]
+        break
+
+      case 'replacement':
+        result = [...this.replacement()]
+        break
+
+      case 'transposition':
+        result = [...this.transposition()]
+        break
+
+      case 'vowel-swap':
+        result = [...this.vowelSwap()]
+        break
+
+      default:
+        throw new Error('invalid method chosen')
+    }
+
+    return result
   }
 
   private bitsquatting(): string[] {
@@ -154,5 +202,26 @@ export class TextFuzz implements Generate {
     return range(97, 123).map((i) => {
       return `${this.word}${String.fromCharCode(i)}`
     })
+  }
+}
+
+class TextFuzzFactory {
+  private static readonly GLYPHS = GLYPHS
+  private static readonly KEYBOARDS = KEYBOARDS
+
+  public static build(word: string, method: Methods) {
+    const glyphs = new Map(Object.entries(this.GLYPHS))
+    const keyboards = this.KEYBOARDS.map(
+      (keyboard) => new Map(Object.entries(keyboard))
+    )
+    return new BaseTextFuzz(word, method, glyphs, keyboards)
+  }
+}
+
+export class TextFuzz implements PickMethod {
+  constructor(private word: string) {}
+
+  public method(method: Methods): BaseTextFuzz {
+    return TextFuzzFactory.build(this.word, method)
   }
 }

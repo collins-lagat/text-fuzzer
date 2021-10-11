@@ -10,20 +10,18 @@ import replace from '@rollup/plugin-replace'
  * @type { import('rollup').RollupOptions }
  */
 const config = {
-  input: path.resolve(__dirname, 'src/main.ts'),
+  input: path.resolve(__dirname, 'src/textFuzz.ts'),
   output: [
     {
       file: path.resolve(__dirname, 'dist/main.js'),
       format: 'esm',
-      sourcemap: true,
+      sourcemap: true
     },
     {
       file: path.resolve(__dirname, 'dist/main.min.js'),
       format: 'esm',
       sourcemap: true,
-      plugins: [
-        process.env.NODE_ENV === 'production' && terser(),
-      ]
+      plugins: [process.env.NODE_ENV === 'production' && terser()]
     }
   ],
   plugins: [
@@ -34,7 +32,7 @@ const config = {
       __buildDate__: () => JSON.stringify(new Date())
     }),
     typescript(),
-    sourcemaps(),
+    sourcemaps()
   ]
 }
 
