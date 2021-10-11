@@ -1,11 +1,12 @@
 import path from 'path'
+import { readFileSync } from 'fs'
 import typescript from '@rollup/plugin-typescript'
 import sourcemaps from 'rollup-plugin-sourcemaps'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 import commonjs from '@rollup/plugin-commonjs'
 import replace from '@rollup/plugin-replace'
-import { readFileSync } from 'fs'
+import fileSize from 'rollup-plugin-filesize'
 
 /** @type { (import('rollup').OutputOptions)[] } */
 const output = [
@@ -22,7 +23,7 @@ if (process.env.NODE_ENV === 'production') {
     file: path.resolve(__dirname, 'dist/main.min.js'),
     format: 'esm',
     sourcemap: true,
-    plugins: [process.env.NODE_ENV === 'production' && terser()]
+    plugins: [terser(), fileSize()]
   })
 }
 
