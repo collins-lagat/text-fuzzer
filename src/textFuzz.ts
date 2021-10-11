@@ -10,7 +10,7 @@ export class TextFuzz implements Generate {
   ) {}
 
   public generate(): string[] {
-    return [...this.repetition()]
+    return [...this.replacement()]
   }
 
   private bitsquatting(): string[] {
@@ -106,5 +106,22 @@ export class TextFuzz implements Generate {
     return Array.from(this.word).map((c, i) => {
       return `${this.word.substring(0, i)}${c}${this.word.substring(i)}`
     })
+  }
+
+  private replacement(): string[] {
+    const result: Set<string> = new Set()
+
+    Array.from(this.word).forEach((c, i) => {
+      const pre = this.word.substring(0, i)
+      const suf = this.word.substring(i + 1)
+
+      this.keyboards.forEach((layout) => {
+        const str = layout.get(c) ?? ''
+
+        Array.from(str).forEach((r) => result.add(`${pre}${r}${suf}`))
+      })
+    })
+
+    return [...result]
   }
 }
