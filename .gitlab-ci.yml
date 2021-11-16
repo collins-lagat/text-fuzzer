@@ -12,6 +12,7 @@ publish:
         echo "Version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME} has already been published, so no new version has been published."
         exit 1
       fi
+    - npm install npm@latest -g
     - npm ci
     - npm run build
     - npm publish
