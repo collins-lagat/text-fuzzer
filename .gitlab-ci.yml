@@ -15,6 +15,6 @@ publish:
     - npm install npm@latest -g
     - npm ci
     - npm run build
-    - npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}"
+    - npm config set '//registry.npmjs.org/:_authToken' "$NPM_TOKEN"
     - npm publish
     - echo "Successfully published version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME}."
