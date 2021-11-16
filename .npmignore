@@ -13,3 +13,4 @@ yarn.lock
 package-lock.json
 .prettierignore
 .prettier
+.env
