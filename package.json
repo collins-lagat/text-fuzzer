@@ -1,8 +1,9 @@
 {
-  "name": "text-fuzzer",
+  "name": "@thecollinslagat/text-fuzzer",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/main.js",
+  "main": "dist/text-fuzzer.min.js",
+  "module": "dist/text-fuzzer.esm.js",
   "scripts": {
     "clean": "rimraf dist",
     "prewatch": "npm run clean",

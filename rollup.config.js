@@ -9,21 +9,34 @@ import replace from '@rollup/plugin-replace'
 import fileSize from 'rollup-plugin-filesize'
 
 /** @type { (import('rollup').OutputOptions)[] } */
-const output = [
-  {
+const output = []
+
+if (process.env.NODE_ENV === 'production') {
+  output.push({
+    file: path.resolve(__dirname, 'dist/text-fuzzer.min.js'),
+    name: 'textFuzzer',
+    format: 'umd',
+    plugins: [terser(), fileSize()],
+    banner: () => `/** ${readFileSync(path.resolve(__dirname, 'LICENSE'))}*/`
+  })
+  output.push({
+    file: path.resolve(__dirname, 'dist/text-fuzzer.js'),
+    format: 'cjs',
+    plugins: [fileSize()],
+    banner: () => `/** ${readFileSync(path.resolve(__dirname, 'LICENSE'))}*/`
+  })
+  output.push({
+    file: path.resolve(__dirname, 'dist/text-fuzzer.esm.js'),
+    format: 'esm',
+    plugins: [fileSize()],
+    banner: () => `/** ${readFileSync(path.resolve(__dirname, 'LICENSE'))}*/`
+  })
+} else {
+  output.push({
     file: path.resolve(__dirname, 'dist/main.js'),
     format: 'esm',
     sourcemap: true,
     banner: () => `/** ${readFileSync(path.resolve(__dirname, 'LICENSE'))}*/`
-  }
-]
-
-if (process.env.NODE_ENV === 'production') {
-  output.push({
-    file: path.resolve(__dirname, 'dist/main.min.js'),
-    format: 'esm',
-    sourcemap: true,
-    plugins: [terser(), fileSize()]
   })
 }
 
