@@ -20,7 +20,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com:collins.lagat/text-fuzzer.git"
+    "url": "https://gitlab.com/collins.lagat/text-fuzzer.git"
   },
   "dependencies": {
     "@rollup/plugin-commonjs": "^20.0.0",
