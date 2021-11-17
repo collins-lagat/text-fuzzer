@@ -14,3 +14,4 @@ package-lock.json
 .prettierignore
 .prettier
 .env
+.npmrc

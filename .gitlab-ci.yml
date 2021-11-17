@@ -16,5 +16,5 @@ publish:
     - npm ci
     - npm run build
     - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> .npmrc
-    - npm publish
+    - npm publish --access=public
     - echo "Successfully published version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME}."
