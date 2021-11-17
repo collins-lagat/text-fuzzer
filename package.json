@@ -1,6 +1,6 @@
 {
   "name": "@thecollinslagat/text-fuzzer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "dist/text-fuzzer.min.js",
   "module": "dist/text-fuzzer.esm.js",
