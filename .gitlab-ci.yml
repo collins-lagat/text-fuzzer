@@ -20,7 +20,7 @@ publish:
 
 test-publishing:
   image: node:14
-  stage: test-deploy
+  stage: test
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
     - if: $CI_MERGE_REQUEST_IID
