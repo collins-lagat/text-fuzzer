@@ -17,3 +17,17 @@ publish:
     - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> .npmrc
     - npm publish --access=public
     - echo "Successfully published version ${NPM_PACKAGE_VERSION} of ${NPM_PACKAGE_NAME}."
+
+test-publishing:
+  image: node:14
+  stage: test-deploy
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_MERGE_REQUEST_IID
+  script:
+    - npm install npm@latest -g
+    - npm ci
+    - npm run build
+    - echo "//registry.npmjs.org/:_authToken=\${NPM_TOKEN}" >> .npmrc
+    - npm publish --access=public --dry-run
+    - echo "Publishing is possible"
