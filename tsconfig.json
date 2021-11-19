@@ -3,13 +3,12 @@
     "target": "ES6",
     "module": "esnext",
     "moduleResolution": "node",
-    "baseUrl": "./",
+    "baseUrl": ".",
     "strict": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "jsx": "react",
     "paths": {
       "@/*": ["src/*"]
     }
