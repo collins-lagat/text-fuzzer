@@ -15,3 +15,15 @@ For example, given the word **bank**, the following words can be generated:
   'banc'
 ]
 ```
+
+# Basic Example
+
+```js
+import { TextFuzzer } from '@thecollinslagat/text-fuzzer'
+
+const fuzzer = new TextFuzzer('bank')
+
+const words = fuzzer.method('addition').generate()
+
+console.log(words)
+```
