@@ -1,4 +1,4 @@
-import { range } from './core'
+import { range } from 'lodash'
 import { GLYPHS, KEYBOARDS } from './core'
 import { GenerateText, Methods, PickMethod } from './core/core'
 
