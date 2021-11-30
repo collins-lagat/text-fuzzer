@@ -1,4 +1,4 @@
-> > Note: This tools is inspired (or rather, translated) from the `DomainFuzz` class of the [dnstwist](https://github.com/elceef/dnstwist) project.
+> Note: This tools is inspired (or rather, translated) from the `DomainFuzz` class of the [dnstwist](https://github.com/elceef/dnstwist) project.
 
 # Purpose
 
