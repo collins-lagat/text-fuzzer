@@ -119,7 +119,7 @@ class BaseTextFuzzer implements GenerateText {
 
   private insertion(): string[] {
     const result: Set<string> = new Set()
-    range(1, this.word.length)
+    range(1, this.word.length - 1)
       .map((i) => {
         const prefix = this.word.substring(0, i)
         const origCharacter = this.word.charAt(i)
