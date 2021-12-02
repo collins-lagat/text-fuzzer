@@ -79,36 +79,34 @@ class BaseTextFuzzer implements GenerateText {
   }
 
   private homoglyph(): string[] {
-    const mix = (word: string): Set<string> => {
-      const result = new Set<string>()
+    const glyphs = this.glyphs
 
-      range(word.length).forEach((w) => {
-        if (w === 0) return
-
-        range(word.length - w + 1).forEach((i) => {
+    function* mix(word: string): Generator<string> {
+      for (const w of range(word.length)) {
+        for (const i of range(word.length - w + 1)) {
           const pre = word.substring(0, i)
           const win = word.substring(i, i + w)
           const suf = word.substring(i + w)
 
-          Array.from(win).forEach((c) => {
-            if (this.glyphs.has(c)) {
-              this.glyphs.get(c)?.forEach((g) => {
-                result.add(`${pre}${win.replace(c, g)}${suf}`)
-              })
+          for (const c of Array.from(win)) {
+            for (const g of glyphs.get(c) || []) {
+              yield `${pre}${win.replace(c, g)}${suf}`
             }
-          })
-        })
-      })
-
-      return result
+          }
+        }
+      }
     }
 
-    const result1 = mix(this.word)
-    const result2 = new Set<string>()
+    const result1 = new Set(mix(this.word))
+    const result2: Set<string>[] = []
 
-    result1.forEach((text) => result2.add(text))
+    for (const r of result1) {
+      result2.push(new Set(mix(r)))
+    }
 
-    return [...result1, ...result2]
+    const combinedList = [result1, ...result2].map((list) => [...list]).flat()
+
+    return Array.from(new Set(combinedList))
   }
 
   private hyphenation(): string[] {
