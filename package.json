@@ -13,7 +13,8 @@
     "lint": "eslint src/ --ext .ts",
     "format": "prettier --write \"./**/*.{js,ts,json}\"",
     "format-check": "prettier --list-different \"./**/*.{js,ts,json}\"",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "keywords": [],
   "author": "Collins Lagat <https://gitlab.com/collins.lagat>",
