@@ -1,4 +1,4 @@
-import { range } from 'lodash'
+import { range } from 'lodash-es'
 import { GLYPHS, KEYBOARDS } from './core'
 import { GenerateText, Methods, PickMethod } from './core/core'
 
@@ -98,15 +98,13 @@ class BaseTextFuzzer implements GenerateText {
     }
 
     const result1 = new Set(mix(this.word))
-    const result2: Set<string>[] = []
+    let result2 = new Set<string>([...result1])
 
     for (const r of result1) {
-      result2.push(new Set(mix(r)))
+      result2 = new Set([...result2, ...new Set(mix(r))])
     }
 
-    const combinedList = [result1, ...result2].map((list) => [...list]).flat()
-
-    return Array.from(new Set(combinedList))
+    return [...result2]
   }
 
   private hyphenation(): string[] {
