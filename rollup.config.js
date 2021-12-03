@@ -1,7 +1,6 @@
 import path from 'path'
 import { readFileSync } from 'fs'
 import typescript from '@rollup/plugin-typescript'
-import sourcemaps from 'rollup-plugin-sourcemaps'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { terser } from 'rollup-plugin-terser'
 import commonjs from '@rollup/plugin-commonjs'
@@ -53,8 +52,7 @@ const config = {
       preventAssignment: true,
       __buildDate__: () => JSON.stringify(new Date())
     }),
-    typescript(),
-    sourcemaps()
+    typescript()
   ]
 }
 
