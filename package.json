@@ -29,8 +29,9 @@
     "@rollup/plugin-replace": "^3.0.0",
     "@rollup/plugin-typescript": "^8.2.5",
     "@types/jest": "^27.0.2",
+    "@types/lodash-es": "^4.17.5",
     "jest": "^27.2.5",
-    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "rimraf": "^3.0.2",
     "rollup": "^2.60.0",
     "rollup-plugin-filesize": "^9.1.1",
@@ -41,7 +42,6 @@
     "zod": "^3.8.2"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.177",
     "@typescript-eslint/eslint-plugin": "^4.31.2",
     "@typescript-eslint/parser": "^4.31.2",
     "eslint": "^7.32.0",
