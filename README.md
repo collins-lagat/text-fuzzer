@@ -19,11 +19,9 @@ For example, given the word **bank**, the following words can be generated:
 # Basic Example
 
 ```js
-import { TextFuzzer } from '@thecollinslagat/text-fuzzer'
+import { addition } from '@thecollinslagat/text-fuzzer'
 
-const fuzzer = new TextFuzzer('bank')
-
-const words = fuzzer.method('addition').generate()
+const words = addition('bank)
 
 console.log(words)
 ```

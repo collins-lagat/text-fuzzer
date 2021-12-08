@@ -1,6 +1,6 @@
 {
   "name": "@thecollinslagat/text-fuzzer",
-  "version": "1.2.2",
+  "version": "2.0.0",
   "description": "",
   "main": "dist/text-fuzzer.min.js",
   "module": "dist/text-fuzzer.esm.js",
@@ -12,14 +12,21 @@
     "prebuild": "npm run clean",
     "build": "NODE_ENV=production rollup -c",
     "postbuild": "npm run build:types",
-    "build:types": "dts-bundle-generator --inline-declare-global --inline-declare-externals -o dist/text-fuzzer.d.ts src/textFuzzer.ts",
+    "build:types": "dts-bundle-generator --inline-declare-global --inline-declare-externals -o dist/text-fuzzer.d.ts src/main.ts",
     "lint": "eslint src/ --ext .ts",
     "format": "prettier --write \"./**/*.{js,ts,json}\"",
     "format-check": "prettier --list-different \"./**/*.{js,ts,json}\"",
     "test": "jest",
     "test:watch": "jest --watch"
   },
-  "keywords": [],
+  "keywords": [
+    "fuzzy",
+    "fuzzing",
+    "string",
+    "similar",
+    "closest",
+    "text"
+  ],
   "author": "Collins Lagat <https://gitlab.com/collins.lagat>",
   "license": "MIT",
   "repository": {

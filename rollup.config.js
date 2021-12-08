@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === 'production') {
  * @type { import('rollup').RollupOptions }
  */
 const config = {
-  input: path.resolve(__dirname, 'src/textFuzzer.ts'),
+  input: path.resolve(__dirname, 'src/main.ts'),
   output,
   plugins: [
     commonjs(),
