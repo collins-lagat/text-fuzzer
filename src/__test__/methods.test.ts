@@ -1,4 +1,15 @@
-import { TextFuzzer } from '@/textFuzzer'
+import {
+  addition,
+  bitsquatting,
+  homoglyph,
+  hyphenation,
+  insertion,
+  omission,
+  repetition,
+  replacement,
+  transposition,
+  vowelSwap
+} from '@/main'
 import {
   expectedAddition,
   expectedBitsquatting,
@@ -12,78 +23,74 @@ import {
   expectedVowelSwap
 } from './fixtures'
 
-let textFuzzer: TextFuzzer
+const testWord = 'bank'
 
 describe('Text Generation Methods', () => {
-  beforeAll(() => {
-    textFuzzer = new TextFuzzer('bank')
-  })
-
   it('bitsquatting', () => {
-    const words = textFuzzer.method('bitsquatting').generate()
+    const words = bitsquatting(testWord)
 
     expect(words.length).toEqual(expectedBitsquatting.length)
     expect(words).toEqual(expectedBitsquatting)
   })
 
   it('homoglyph', () => {
-    const words = textFuzzer.method('homoglyph').generate()
+    const words = homoglyph(testWord)
 
     expect(words.length).toEqual(expectedHomoglyph.length)
     expect(words).toEqual(expect.arrayContaining(expectedHomoglyph))
   })
 
   it('hyphenation', () => {
-    const words = textFuzzer.method('hyphenation').generate()
+    const words = hyphenation(testWord)
 
     expect(words.length).toEqual(expectedHyphenation.length)
     expect(words).toEqual(expect.arrayContaining(expectedHyphenation))
   })
 
   it('insertion', () => {
-    const words = textFuzzer.method('insertion').generate()
+    const words = insertion(testWord)
 
     expect(words.length).toEqual(expectedInsertion.length)
     expect(words).toEqual(expect.arrayContaining(expectedInsertion))
   })
 
   it('omission', () => {
-    const words = textFuzzer.method('omission').generate()
+    const words = omission(testWord)
 
     expect(words.length).toEqual(expectedOmission.length)
     expect(words).toEqual(expect.arrayContaining(expectedOmission))
   })
 
   it('repetition', () => {
-    const words = textFuzzer.method('repetition').generate()
+    const words = repetition(testWord)
 
     expect(words.length).toEqual(expectedRepetition.length)
     expect(words).toEqual(expect.arrayContaining(expectedRepetition))
   })
 
   it('replacement', () => {
-    const words = textFuzzer.method('replacement').generate()
+    const words = replacement(testWord)
 
     expect(words.length).toEqual(expectedReplacement.length)
     expect(words).toEqual(expect.arrayContaining(expectedReplacement))
   })
 
   it('transposition', () => {
-    const words = textFuzzer.method('transposition').generate()
+    const words = transposition(testWord)
 
     expect(words.length).toEqual(expectedTransposition.length)
     expect(words).toEqual(expect.arrayContaining(expectedTransposition))
   })
 
   it('vowel-swap', () => {
-    const words = textFuzzer.method('vowel-swap').generate()
+    const words = vowelSwap(testWord)
 
     expect(words.length).toEqual(expectedVowelSwap.length)
     expect(words).toEqual(expect.arrayContaining(expectedVowelSwap))
   })
 
   it('addition', () => {
-    const words = textFuzzer.method('addition').generate()
+    const words = addition(testWord)
 
     expect(words.length).toEqual(expectedAddition.length)
     expect(words).toEqual(expect.arrayContaining(expectedAddition))
