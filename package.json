@@ -19,7 +19,14 @@
     "test": "jest",
     "test:watch": "jest --watch"
   },
-  "keywords": [],
+  "keywords": [
+    "fuzzy",
+    "fuzzing",
+    "string",
+    "similar",
+    "closest",
+    "text"
+  ],
   "author": "Collins Lagat <https://gitlab.com/collins.lagat>",
   "license": "MIT",
   "repository": {
