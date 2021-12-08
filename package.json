@@ -12,7 +12,7 @@
     "prebuild": "npm run clean",
     "build": "NODE_ENV=production rollup -c",
     "postbuild": "npm run build:types",
-    "build:types": "dts-bundle-generator --inline-declare-global --inline-declare-externals -o dist/text-fuzzer.d.ts src/textFuzzer.ts",
+    "build:types": "dts-bundle-generator --inline-declare-global --inline-declare-externals -o dist/text-fuzzer.d.ts src/main.ts",
     "lint": "eslint src/ --ext .ts",
     "format": "prettier --write \"./**/*.{js,ts,json}\"",
     "format-check": "prettier --list-different \"./**/*.{js,ts,json}\"",
