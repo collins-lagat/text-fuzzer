@@ -1,7 +1,3 @@
 */dist
 node_modules
 package-lock.json
-.github/*
-templates/ryanada/js
-templates/ryanada/css
-install
